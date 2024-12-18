@@ -12,3 +12,5 @@ router.put('/:id', protect, updateUser);
 router.delete('/:id', protect, deleteUser);
 
 module.exports = router;
+
+
