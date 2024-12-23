@@ -1,18 +1,19 @@
 const Device = require('../Models/Device');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-const JWT_SECRET = 'your_secret_key';
+const JWT_SECRET = process.env.SECRET_KEY;
 
 const generateToken = (device) => {
   return jwt.sign({ id: device._id, email: device.email }, JWT_SECRET, { expiresIn: '1h' });
 };
 
 exports.addDevice = async (req, res) => {
-  const { userName, email, password } = req.body;
+  const { device, description, price } = req.body;
+
   try {
-    const device = await Device.create({ userName, email, password });
-    const token = generateToken(device);
-    res.status(201).json({ device, token });
+    const newDevice = await Device.create({ device, description, price });
+    res.status(201).json({ message: 'Device added successfully', newDevice });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -26,6 +27,7 @@ exports.getAllDevices = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
 
 
 exports.getDeviceById = async (req, res) => {
