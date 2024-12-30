@@ -5,9 +5,9 @@ const { protect } = require('../Middleware/auth');
 const router = express.Router();
 
 router.post('/', addDevice);
-router.get('/', protect, getAllDevices);
-router.get('/:id', protect, getDeviceById);
-router.put('/:id', protect, updateDevice);
-router.delete('/:id', protect, deleteDevice);
+router.get('/',  getAllDevices);
+router.get('/:id',  getDeviceById);
+router.put('/:id',  updateDevice);
+router.delete('/:id',  deleteDevice);
 
 module.exports = router;

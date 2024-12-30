@@ -1,0 +1,6 @@
+.cart {
+    border: 2px solid black;
+    text-align: start;
+    padding: 5px 20px;
+    height: fit-content;
+}
